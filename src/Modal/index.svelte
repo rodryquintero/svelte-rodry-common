@@ -9,30 +9,11 @@
   }
 </script>
 
-<style>
-  .modal {
-    transition: opacity 0.25s ease;
-  }
-  /* body.modal-active {
-    overflow-x: hidden;
-    overflow-y: visible !important;
-  } */
-
-  span.close {
-    cursor: pointer;
-    color: gray;
-    font-weight: bolder;
-  }
-
-  span.close:hover {
-    text-shadow: 0 0 3px gray;
-  }
-</style>
-
 {#if show}
-  <div
+  <div style="z-index: 2000"
     class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center
-    sm:justify-center">
+    sm:justify-center"
+  >
     <div class="fixed inset-0 transition-opacity">
       <div class="absolute inset-0 bg-gray-500 opacity-75" />
     </div>
@@ -42,8 +23,8 @@
       transition-all ${cssClass}`}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="modal-headline">
-
+      aria-labelledby="modal-headline"
+    >
       <!-- TITLE -->
       <div class="bg-white px-4 pt-3">
         <!-- SLOT -->
@@ -73,3 +54,24 @@
     </div>
   </div>
 {/if}
+
+<style>
+  .modal {
+    transition: opacity 0.25s ease;
+  }
+  /* body.modal-active {
+    overflow-x: hidden;
+    overflow-y: visible !important;
+  } */
+
+  span.close {
+    cursor: pointer;
+    color: gray;
+    font-weight: bolder;
+  }
+
+  span.close:hover {
+    text-shadow: 0 0 3px gray;
+  }
+
+</style>

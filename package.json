@@ -3,16 +3,23 @@
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "dev": "rollup -c rollup.config.dev.js -w",
+    "start": "sirv public"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "rollup": "^2.40.0",
     "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-svelte": "^7.1.0",
+    "sirv-cli": "^1.0.11",
     "svelte": "^3.34.0"
   },
   "keywords": [
