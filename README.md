@@ -34,9 +34,9 @@
   ### Example
   Simple Modal script
 
-  ```
+  ```javascript
   <script>
-    import { Modal } from "../src/index.js";
+    import { Modal } from "svelte-rodry-common";
     import pkg from "../package.json";
 
     let showModal = false;
