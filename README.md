@@ -18,9 +18,41 @@
   
   |Property|Type|Description|
   |-------|-----|----|
-  |show|Boolean|Shows or hides the Modal|
-  |onClose|Function|Runs when the built in close button is pressed. Use if you want to control the open/close state from your application|
+  |show|_Boolean_|Shows or hides the Modal|
+  |cssClass|_String_|Custom CSS classes to add to the Modal window|
+  |onClose|_Function_|Runs when the built in close button is pressed. Use if you want to control the open/close state from your application|
+
+  ### Slots
+  The Modal accepts 3 slots
   
+  |Slot|Description|
+  |----|----|
+  |title|Title of the modal window|
+  |body|Main content of the modal|
+  |footer|Footer of the modal window. Use to put custom buttons to the modal|
+
+  ### Example
+  Simple Modal script
+
+  ```
+  <script>
+    import { Modal } from "../src/index.js";
+    import pkg from "../package.json";
+
+    let showModal = false;
+
+    const toggleModal = () => (showModal = !showModal);
+  </script>
+
+  <Modal cssClass="w-8/12" show={showModal} onClose={toggleModal}>
+    <div slot="title">Modal Title</div>
+    <div slot="body">Modal Body</div>
+    <div slot="footer" class="grid justify-items-end">
+        <button on:click={toggleModal}>Close</button>
+    </div>
+  </Modal>
+  ```
+
   ### Tabs
   Recompiled version of `svelte-tabs` with the latest version of Svelte. This fixes an error related to the older Svelte version used by the package.
 
