@@ -14,3 +14,17 @@
   ### Modal
 
   Very simple modal window using Tailwind css classes.
+  ### Tabs
+  Recompiled version of `svelte-tabs` with the latest version of Svelte. This fixes an error related to the older Svelte version used by the package.
+
+  _Coming soon..._
+
+  ### Tabulator
+  Sveltified version of `tabulator-tables`.
+
+  _Coming soon..._
+
+  ### Treeview
+  Based on the Treeview examples shown in several REPLs. It uses *Fontawesome* icons
+
+  _Coming soon..._
