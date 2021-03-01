@@ -34,7 +34,7 @@
           </div>
 
           <!-- CLOSE DIALOG "x" -->
-          <div class="w-1/12 text-right">
+          <div class="w-1/12 text-right close">
             <span on:click={hide} class="close">X</span>
           </div>
         </div>
@@ -64,7 +64,7 @@
     overflow-y: visible !important;
   } */
 
-  span.close {
+  .close {
     cursor: pointer;
     color: gray;
     font-weight: bolder;

@@ -20,7 +20,7 @@
 
       <button on:click={toggleModal}>Show Modal</button>
 
-      <Modal cssClass="w-8/12" show={showModal}>
+      <Modal cssClass="w-8/12" show={showModal} onClose={toggleModal}>
         <div slot="title">Modal Title</div>
         <div slot="body">Modal Body</div>
         <div slot="footer" class="grid justify-items-end">

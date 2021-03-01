@@ -475,21 +475,21 @@ var app = (function () {
     			add_location(div1, file$1, 16, 4, 334);
     			attr_dev(div2, "class", "w-11/12");
     			add_location(div2, file$1, 31, 10, 792);
-    			attr_dev(span, "class", "close svelte-4svv12");
-    			add_location(span, file$1, 37, 12, 962);
-    			attr_dev(div3, "class", "w-1/12 text-right");
+    			attr_dev(span, "class", "close svelte-1stvsba");
+    			add_location(span, file$1, 37, 12, 968);
+    			attr_dev(div3, "class", "w-1/12 text-right close svelte-1stvsba");
     			add_location(div3, file$1, 36, 10, 917);
     			attr_dev(div4, "class", "flex");
     			add_location(div4, file$1, 30, 8, 762);
     			attr_dev(div5, "class", "bg-white px-4 pt-3");
     			add_location(div5, file$1, 28, 6, 697);
     			attr_dev(div6, "class", "bg-white px-4 pt-3 pb-3");
-    			add_location(div6, file$1, 43, 6, 1085);
+    			add_location(div6, file$1, 43, 6, 1091);
     			attr_dev(div7, "class", "bg-gray-300 px-4 py-3");
-    			add_location(div7, file$1, 49, 6, 1222);
+    			add_location(div7, file$1, 49, 6, 1228);
 
     			attr_dev(div8, "class", div8_class_value = "" + (null_to_empty(`bg-white rounded-lg overflow-hidden shadow-xl transform
-      transition-all ${/*cssClass*/ ctx[1]}`) + " svelte-4svv12"));
+      transition-all ${/*cssClass*/ ctx[1]}`) + " svelte-1stvsba"));
 
     			attr_dev(div8, "role", "dialog");
     			attr_dev(div8, "aria-modal", "true");
@@ -557,7 +557,7 @@ var app = (function () {
     			}
 
     			if (!current || dirty & /*cssClass*/ 2 && div8_class_value !== (div8_class_value = "" + (null_to_empty(`bg-white rounded-lg overflow-hidden shadow-xl transform
-      transition-all ${/*cssClass*/ ctx[1]}`) + " svelte-4svv12"))) {
+      transition-all ${/*cssClass*/ ctx[1]}`) + " svelte-1stvsba"))) {
     				attr_dev(div8, "class", div8_class_value);
     			}
     		},
@@ -798,7 +798,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "Modal Title";
     			attr_dev(div, "slot", "title");
-    			add_location(div, file, 23, 8, 611);
+    			add_location(div, file, 23, 8, 633);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -828,7 +828,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "Modal Body";
     			attr_dev(div, "slot", "body");
-    			add_location(div, file, 24, 8, 656);
+    			add_location(div, file, 24, 8, 678);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -862,10 +862,10 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Close";
     			attr_dev(button, "class", "svelte-1tusmao");
-    			add_location(button, file, 26, 10, 761);
+    			add_location(button, file, 26, 10, 783);
     			attr_dev(div, "slot", "footer");
     			attr_dev(div, "class", "grid justify-items-end");
-    			add_location(div, file, 25, 8, 699);
+    			add_location(div, file, 25, 8, 721);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -895,7 +895,7 @@ var app = (function () {
     	return block;
     }
 
-    // (23:6) <Modal cssClass="w-8/12" show={showModal}>
+    // (23:6) <Modal cssClass="w-8/12" show={showModal} onClose={toggleModal}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -920,7 +920,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(23:6) <Modal cssClass=\\\"w-8/12\\\" show={showModal}>",
+    		source: "(23:6) <Modal cssClass=\\\"w-8/12\\\" show={showModal} onClose={toggleModal}>",
     		ctx
     	});
 
@@ -951,6 +951,7 @@ var app = (function () {
     			props: {
     				cssClass: "w-8/12",
     				show: /*showModal*/ ctx[0],
+    				onClose: /*toggleModal*/ ctx[1],
     				$$slots: {
     					default: [create_default_slot],
     					footer: [create_footer_slot],
