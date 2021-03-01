@@ -12,8 +12,15 @@
 
  ## Components
   ### Modal
-
   Very simple modal window using Tailwind css classes.
+
+  ### Properties
+  
+  |Property|Type|Description|
+  |-------|-----|----|
+  |show|Boolean|Shows or hides the Modal|
+  |onClose|Function|Runs when the built in close button is pressed. Use if you want to control the open/close state from your application|
+  
   ### Tabs
   Recompiled version of `svelte-tabs` with the latest version of Svelte. This fixes an error related to the older Svelte version used by the package.
 
