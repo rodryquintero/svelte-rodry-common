@@ -2,7 +2,6 @@
   import { Modal } from "../src/index.js";
   import MultiSelect from "../src/MultiSelect/index.svelte";
   import SvelteTabs from './SvelteTabs/index.svelte'
-  import "tailwindcss/dist/tailwind.css"
 
   import pkg from "../package.json";
 

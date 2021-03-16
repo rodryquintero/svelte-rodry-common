@@ -74,6 +74,6 @@
     opacity: 1;
     border-top: 3px solid #0066cc;
     color: #191919 !important;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid white;
   }
 </style>

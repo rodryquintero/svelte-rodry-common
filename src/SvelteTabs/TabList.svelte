@@ -8,7 +8,7 @@
     margin: 0;
     padding: 0; */
     background-color: white;
-    margin-bottom: -3px;
+    /* margin-bottom: -3px; */
     border-bottom: 1px solid #CCCCCC;
     padding: 0;
   }

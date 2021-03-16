@@ -10,15 +10,21 @@
   </TabList>
 
   <TabPanel>
-    <h2>Panel One</h2>
+    <div class="p-2">
+      <h2>Panel One</h2>
+    </div>
   </TabPanel>
 
   <TabPanel>
-    <h2>Panel Two</h2>
+    <div class="p-2">
+      <h2>Panel Two</h2>
+    </div>
   </TabPanel>
 
   <TabPanel>
-    <h2>Panel Three</h2>
+    <div class="p-2">
+      <h2>Panel Three</h2>
+    </div>
   </TabPanel>
 </Tabs>
 

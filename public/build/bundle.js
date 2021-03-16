@@ -1744,7 +1744,7 @@ var app = (function () {
     			attr_dev(li, "aria-controls", li_aria_controls_value = /*$controls*/ ctx[2][/*tab*/ ctx[3].id]);
     			attr_dev(li, "aria-selected", /*isSelected*/ ctx[1]);
     			attr_dev(li, "tabindex", li_tabindex_value = /*isSelected*/ ctx[1] ? 0 : -1);
-    			attr_dev(li, "class", "svelte-tabs__tab svelte-111yhwt");
+    			attr_dev(li, "class", "svelte-tabs__tab svelte-lg6f9k");
     			toggle_class(li, "svelte-tabs__selected", /*isSelected*/ ctx[1]);
     			add_location(li, file$4, 30, 0, 477);
     		},
@@ -1935,7 +1935,7 @@ var app = (function () {
     			ul = element("ul");
     			if (default_slot) default_slot.c();
     			attr_dev(ul, "role", "tablist");
-    			attr_dev(ul, "class", "svelte-tabs__tab-list svelte-jyubgx");
+    			attr_dev(ul, "class", "svelte-tabs__tab-list svelte-lp409l");
     			add_location(ul, file$3, 0, 0, 0);
     		},
     		l: function claim(nodes) {
@@ -2385,19 +2385,24 @@ var app = (function () {
 
     // (12:2) <TabPanel>
     function create_default_slot_3(ctx) {
+    	let div;
     	let h2;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			h2 = element("h2");
     			h2.textContent = "Panel One";
-    			add_location(h2, file$1, 12, 4, 221);
+    			add_location(h2, file$1, 13, 6, 246);
+    			attr_dev(div, "class", "p-2");
+    			add_location(div, file$1, 12, 4, 221);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, h2, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, h2);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(h2);
+    			if (detaching) detach_dev(div);
     		}
     	};
 
@@ -2412,21 +2417,26 @@ var app = (function () {
     	return block;
     }
 
-    // (16:2) <TabPanel>
+    // (18:2) <TabPanel>
     function create_default_slot_2(ctx) {
+    	let div;
     	let h2;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			h2 = element("h2");
     			h2.textContent = "Panel Two";
-    			add_location(h2, file$1, 16, 4, 276);
+    			add_location(h2, file$1, 19, 6, 338);
+    			attr_dev(div, "class", "p-2");
+    			add_location(div, file$1, 18, 4, 313);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, h2, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, h2);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(h2);
+    			if (detaching) detach_dev(div);
     		}
     	};
 
@@ -2434,28 +2444,33 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(16:2) <TabPanel>",
+    		source: "(18:2) <TabPanel>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (20:2) <TabPanel>
+    // (24:2) <TabPanel>
     function create_default_slot_1(ctx) {
+    	let div;
     	let h2;
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			h2 = element("h2");
     			h2.textContent = "Panel Three";
-    			add_location(h2, file$1, 20, 4, 331);
+    			add_location(h2, file$1, 25, 6, 430);
+    			attr_dev(div, "class", "p-2");
+    			add_location(div, file$1, 24, 4, 405);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, h2, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, h2);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(h2);
+    			if (detaching) detach_dev(div);
     		}
     	};
 
@@ -2463,7 +2478,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(20:2) <TabPanel>",
+    		source: "(24:2) <TabPanel>",
     		ctx
     	});
 
@@ -2736,7 +2751,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (238:8) <div slot="title">
+    // (237:8) <div slot="title">
     function create_title_slot(ctx) {
     	let div;
 
@@ -2745,7 +2760,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "Modal Title";
     			attr_dev(div, "slot", "title");
-    			add_location(div, file, 237, 8, 4491);
+    			add_location(div, file, 236, 8, 4449);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2759,14 +2774,14 @@ var app = (function () {
     		block,
     		id: create_title_slot.name,
     		type: "slot",
-    		source: "(238:8) <div slot=\\\"title\\\">",
+    		source: "(237:8) <div slot=\\\"title\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (239:8) <div slot="body">
+    // (238:8) <div slot="body">
     function create_body_slot(ctx) {
     	let div;
 
@@ -2775,7 +2790,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "Modal Body";
     			attr_dev(div, "slot", "body");
-    			add_location(div, file, 238, 8, 4536);
+    			add_location(div, file, 237, 8, 4494);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2789,14 +2804,14 @@ var app = (function () {
     		block,
     		id: create_body_slot.name,
     		type: "slot",
-    		source: "(239:8) <div slot=\\\"body\\\">",
+    		source: "(238:8) <div slot=\\\"body\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (240:8) <div slot="footer" class="grid justify-items-end">
+    // (239:8) <div slot="footer" class="grid justify-items-end">
     function create_footer_slot(ctx) {
     	let div;
     	let button;
@@ -2809,10 +2824,10 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Close";
     			attr_dev(button, "class", "svelte-mctist");
-    			add_location(button, file, 240, 10, 4641);
+    			add_location(button, file, 239, 10, 4599);
     			attr_dev(div, "slot", "footer");
     			attr_dev(div, "class", "grid justify-items-end");
-    			add_location(div, file, 239, 8, 4579);
+    			add_location(div, file, 238, 8, 4537);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2835,14 +2850,14 @@ var app = (function () {
     		block,
     		id: create_footer_slot.name,
     		type: "slot",
-    		source: "(240:8) <div slot=\\\"footer\\\" class=\\\"grid justify-items-end\\\">",
+    		source: "(239:8) <div slot=\\\"footer\\\" class=\\\"grid justify-items-end\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (237:6) <Modal cssClass="w-8/12" show={showModal} onClose={toggleModal}>
+    // (236:6) <Modal cssClass="w-8/12" show={showModal} onClose={toggleModal}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -2867,14 +2882,14 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(237:6) <Modal cssClass=\\\"w-8/12\\\" show={showModal} onClose={toggleModal}>",
+    		source: "(236:6) <Modal cssClass=\\\"w-8/12\\\" show={showModal} onClose={toggleModal}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (263:12) {#each selectedCountries as country}
+    // (262:12) {#each selectedCountries as country}
     function create_each_block(ctx) {
     	let small;
     	let t0_value = /*country*/ ctx[5] + "";
@@ -2886,7 +2901,7 @@ var app = (function () {
     			small = element("small");
     			t0 = text(t0_value);
     			t1 = text(",");
-    			add_location(small, file, 263, 14, 5380);
+    			add_location(small, file, 262, 14, 5338);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, small, anchor);
@@ -2905,7 +2920,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(263:12) {#each selectedCountries as country}",
+    		source: "(262:12) {#each selectedCountries as country}",
     		ctx
     	});
 
@@ -3035,41 +3050,41 @@ var app = (function () {
     			t21 = space();
     			create_component(sveltetabs.$$.fragment);
     			attr_dev(h1, "class", "text-center svelte-mctist");
-    			add_location(h1, file, 227, 2, 4150);
+    			add_location(h1, file, 226, 2, 4108);
     			attr_dev(h2, "class", "svelte-mctist");
-    			add_location(h2, file, 228, 2, 4210);
+    			add_location(h2, file, 227, 2, 4168);
     			attr_dev(h30, "class", "svelte-mctist");
-    			add_location(h30, file, 232, 6, 4333);
+    			add_location(h30, file, 231, 6, 4291);
     			attr_dev(button, "class", "svelte-mctist");
-    			add_location(button, file, 234, 6, 4357);
+    			add_location(button, file, 233, 6, 4315);
     			attr_dev(div0, "class", "rounded border border-gray-200 p-2 shadow");
-    			add_location(div0, file, 231, 4, 4270);
+    			add_location(div0, file, 230, 4, 4228);
     			attr_dev(section0, "class", "p-2");
-    			add_location(section0, file, 230, 2, 4243);
+    			add_location(section0, file, 229, 2, 4201);
     			attr_dev(h31, "class", "svelte-mctist");
-    			add_location(h31, file, 249, 6, 4864);
+    			add_location(h31, file, 248, 6, 4822);
     			attr_dev(label, "for", "country-list");
-    			add_location(label, file, 251, 8, 4936);
+    			add_location(label, file, 250, 8, 4894);
     			attr_dev(h5, "class", "px-2 svelte-mctist");
-    			add_location(h5, file, 260, 10, 5229);
+    			add_location(h5, file, 259, 10, 5187);
     			attr_dev(div1, "class", "px-2 h-20 overflow-auto");
-    			add_location(div1, file, 261, 10, 5277);
+    			add_location(div1, file, 260, 10, 5235);
     			attr_dev(div2, "class", " rounded bg-gray-200 w-6/12 ");
-    			add_location(div2, file, 259, 8, 5175);
+    			add_location(div2, file, 258, 8, 5133);
     			attr_dev(div3, "class", "flex justify-between");
-    			add_location(div3, file, 250, 6, 4892);
+    			add_location(div3, file, 249, 6, 4850);
     			attr_dev(div4, "class", "rounded border border-gray-200 p-2 shadow");
-    			add_location(div4, file, 248, 4, 4801);
+    			add_location(div4, file, 247, 4, 4759);
     			attr_dev(section1, "class", "p-2");
-    			add_location(section1, file, 247, 2, 4774);
+    			add_location(section1, file, 246, 2, 4732);
     			attr_dev(h32, "class", "svelte-mctist");
-    			add_location(h32, file, 274, 6, 5620);
+    			add_location(h32, file, 273, 6, 5578);
     			attr_dev(div5, "class", "rounded border border-gray-200 p-2 shadow");
-    			add_location(div5, file, 273, 4, 5557);
+    			add_location(div5, file, 272, 4, 5515);
     			attr_dev(section2, "class", "p-2");
-    			add_location(section2, file, 272, 2, 5530);
+    			add_location(section2, file, 271, 2, 5488);
     			attr_dev(main, "class", "w-full");
-    			add_location(main, file, 226, 0, 4125);
+    			add_location(main, file, 225, 0, 4083);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
