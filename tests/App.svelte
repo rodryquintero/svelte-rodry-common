@@ -1,6 +1,7 @@
 <script>
   import { Modal } from "../src/index.js";
   import MultiSelect from "../src/MultiSelect/index.svelte";
+  import SvelteTabs from './SvelteTabs/index.svelte'
 
   import pkg from "../package.json";
 
@@ -264,6 +265,14 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- SVELTE TABS -->
+  <section class="p-2">
+    <div class="rounded border border-gray-200 p-2 shadow">
+      <h3>Svelte Tabs</h3>
+      <SvelteTabs />
     </div>
   </section>
 </main>
