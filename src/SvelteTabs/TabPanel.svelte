@@ -1,29 +1,34 @@
 <script>
-  import { getContext } from 'svelte';
+  import { getContext } from "svelte";
 
-  import getId from './id';
-  import { TABS } from './Tabs.svelte';
+  import getId from "./id";
+  import { TABS } from "./Tabs.svelte";
 
   const panel = {
-    id: getId()
+    id: getId(),
   };
   const { registerPanel, selectedPanel, labeledBy } = getContext(TABS);
 
   registerPanel(panel);
 </script>
 
-<style>
-  .svelte-tabs__tab-panel {
-    margin-top: 0.5em;
-  }
-</style>
-
-<div 
+<div
   id={panel.id}
   aria-labelledby={$labeledBy[panel.id]}
   class="svelte-tabs__tab-panel"
-  role="tabpanel">
+  role="tabpanel"
+>
   {#if $selectedPanel === panel}
-    <slot></slot>
+    <slot />
   {/if}
 </div>
+
+<style>
+  .svelte-tabs__tab-panel {
+    /* margin-top: 0.5em; */
+    background-color: white;
+    margin: 0;
+    margin-top: -2px;
+    border: 1px solid gray;
+  }
+</style>

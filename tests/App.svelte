@@ -2,6 +2,7 @@
   import { Modal } from "../src/index.js";
   import MultiSelect from "../src/MultiSelect/index.svelte";
   import SvelteTabs from './SvelteTabs/index.svelte'
+  import "tailwindcss/dist/tailwind.css"
 
   import pkg from "../package.json";
 
@@ -246,7 +247,7 @@
   <!-- MULTISELECT -->
   <section class="p-2">
     <div class="rounded border border-gray-200 p-2 shadow">
-      <h3>MULTISELECT</h3>
+      <h3>MultiSelect</h3>
       <div class="flex justify-between">
         <label for="country-list">
           Country List
