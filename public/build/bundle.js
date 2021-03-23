@@ -2703,7 +2703,7 @@ var app = (function () {
     var svelte = "src/index.js";
     var module = "dist/index.mjs";
     var main = "dist/index.js";
-    var version = "1.0.3";
+    var version = "1.0.4";
     var scripts = {
     	build: "rollup -c",
     	prepublishOnly: "npm run build",
