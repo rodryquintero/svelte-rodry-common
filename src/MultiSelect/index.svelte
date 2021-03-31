@@ -1,18 +1,25 @@
 <script>
-  // export let label = "";
+  import { onMount, onDestroy } from "svelte";
   export let items = [];
   export let value = [];
   export let name = "";
   export let onChange = () => {};
-  //   let menuItems =
-  //     value.length == 0
-  //       ? items.map((d) => ({ checked: true, value: d }))
-  //       : items.map((d) => ({
-  //           checked: value.indexOf(d) != -1,
-  //           value: d,
-  //         }));
 
-  // value = value.length == 0 ? items : value;
+  const className = `dropdown-${Date.now()}-${Math.random() * 100}`;
+
+  const onClickOutside = (e) => {
+    if (!e.target.className.includes(className)) {
+      show = false;
+    }
+  };
+
+  onMount(() => {
+    window.addEventListener("click", onClickOutside);
+  });
+
+  onDestroy(() => {
+    window.removeEventListener("click", onClickOutside);
+  });
 
   $: itemsTooltip = value.length ? value.join(",") : "";
 
@@ -21,7 +28,7 @@
   let showChecked = false;
   let selectAll = value.length == items.length ? true : false;
 
-  $: selectTotal = value.length;
+  // $: selectTotal = value.length;
 
   let displayItems = [];
 
@@ -73,22 +80,22 @@
   };
 </script>
 
-<div class="dropdown">
+<div class={`${className} dropdown`}>
   <button
     on:click={trigger}
-    class="dropbtn"
+    class={`dropbtn ${className}`}
     class:menu-open={show}
     title={itemsTooltip}
   >
-    <span style="margin-left: 2px">&#9660;</span>
+    <span class={`${className}`} style="margin-left: 2px">&#9660;</span>
     {#each value as val}
-      <span class="value"> {val}</span>
+      <span class={`value ${className}`}> {val}</span>
     {/each}
     <!-- <span>{label}</span>&nbsp; ({selectTotal}/{items.length})
     -->
   </button>
   {#if show}
-    <div class="dropdown-content">
+    <div class={`${className} dropdown-content`}>
       <!-- Filter box -->
       <label for="filter">
         <input
@@ -101,7 +108,7 @@
         /></label
       >
       <!-- MENU ITEMS MODIFIERS -->
-      <div class="list-actions">
+      <div class={`list-actions ${className}`}>
         <!-- Select all -->
         <label for="select-all">
           <input
@@ -125,8 +132,9 @@
 
       <!-- Menu items -->
       {#each displayItems as item}
-        <label class="menu-item" for={`${item}`}>
+        <label class={`menu-item ${className}`} for={`${item}`}>
           <input
+            class={`${className}`}
             checked={value.indexOf(item) != -1}
             on:change={toggleCheck}
             type="checkbox"

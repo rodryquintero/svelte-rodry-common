@@ -6,8 +6,6 @@
   export let items = [];
   export let onClick = () => {};
 
-  $: console.log($store);
-
   const onHashChange = () => {
     $store.currentUrl = window.location.hash;
   };
