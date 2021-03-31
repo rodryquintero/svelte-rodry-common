@@ -1,7 +1,36 @@
 <script>
-  import { Modal } from "../src/index.js";
+  import { Modal, Treeview } from "../src/index.js";
   import MultiSelect from "../src/MultiSelect/index.svelte";
-  import SvelteTabs from './SvelteTabs/index.svelte'
+  import SvelteTabs from "./SvelteTabs/index.svelte";
+
+  const treeviewItems = [
+    {
+      title: "Main",
+      url: "#/main",
+      children: [
+        { title: "Order Entry", url: "#/order-entry" },
+        {
+          title: "Queries",
+          url: "#/main/queries",
+          children: [
+            { title: "Order Search", url: "#/main/queries/order-search" },
+            { title: "Patient Search", url: "#/main/queries/patient-search" },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Administration",
+      url: "#/administration",
+      children: [
+        { title: "Test", url: "#/administration/tests" },
+        { title: "Users", url: "#/administration/users" },
+        { title: "QC", url: "#/administration/qc" },
+        { title: "ICA", url: "#/administration/ica" },
+      ],
+    },
+    { title: "Monitoring", url: "#/monitoring" },
+  ];
 
   import pkg from "../package.json";
 
@@ -275,6 +304,16 @@
       <SvelteTabs />
     </div>
   </section>
+
+  <!-- TREEVIEW -->
+  <section class="p-2">
+    <div class="rounded border border-gray-200 p-2 shadow">
+      <h3>Treeview</h3>
+      <div class="w-3/12 bg-gray-200 p-2">
+        <Treeview items={treeviewItems} />
+      </div>
+    </div>
+  </section>
 </main>
 
 <style>
@@ -311,5 +350,9 @@
   }
   button:hover {
     box-shadow: 0 0 3px gray;
+  }
+
+  * {
+    font-family: Arial, Helvetica, sans-serif;
   }
 </style>
