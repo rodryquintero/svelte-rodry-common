@@ -1,7 +1,13 @@
 <script>
-  import { Modal, Treeview } from "../src/index.js";
+  import { Modal, Treeview, Breadcrumbs } from "../src/index.js";
   import MultiSelect from "../src/MultiSelect/index.svelte";
   import SvelteTabs from "./SvelteTabs/index.svelte";
+
+  const crumbs = [
+    { label: "Main", url: "#/main" },
+    { label: "Queries", url: "#/main/queries" },
+    { label: "Order Search", url: "#/main/queries/order-search" },
+  ];
 
   const treeviewItems = [
     {
@@ -312,6 +318,14 @@
       <div class="w-3/12 bg-gray-200 p-2">
         <Treeview items={treeviewItems} />
       </div>
+    </div>
+  </section>
+
+  <!-- BREADCRUMBS -->
+  <section class="p-2">
+    <div class="rounded border border-gray-200 p-2 shadow">
+      <h3>Breadcrumbs</h3>
+      <Breadcrumbs items={crumbs} />
     </div>
   </section>
 </main>

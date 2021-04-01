@@ -1,12 +1,9 @@
 <script>
   import { store } from "./store";
-  // import { onMount, onDestroy } from "svelte";
-
+  
   export let item = {};
   export let onClick = (e, item) => {};
   let showChildren = false;
-
-  // let currentUrl = window.location.hash;
 
   $: title = item.title;
   $: children = item.children;
@@ -15,17 +12,6 @@
     showChildren = !showChildren;
   };
 
-  // const onHashChange = () => {
-  //   currentUrl = window.location.hash;
-  // };
-
-  // onMount(() => {
-  //   window.addEventListener("hashchange", onHashChange);
-  // });
-
-  // onDestroy(() => {
-  //   window.removeEventListener("hashchange", onHashChange);
-  // });
 </script>
 
 {#if children}
@@ -59,6 +45,7 @@
 <style>
   .active {
     font-weight: bold;
+    color: #0066cc;
   }
   ul {
     margin-left: 0.9rem;
