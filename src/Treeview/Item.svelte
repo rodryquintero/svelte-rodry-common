@@ -1,6 +1,6 @@
 <script>
   import { store } from "./store";
-  
+
   export let item = {};
   export let onClick = (e, item) => {};
   let showChildren = false;
@@ -11,7 +11,6 @@
   const toggleChildren = () => {
     showChildren = !showChildren;
   };
-
 </script>
 
 {#if children}

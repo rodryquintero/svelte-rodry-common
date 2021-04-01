@@ -1,10 +1,11 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-
   import { store } from "./store";
   import Item from "./Item.svelte";
   export let items = [];
   export let onClick = () => {};
+
+  // ==================================================================
 
   const onHashChange = () => {
     $store.currentUrl = window.location.hash;

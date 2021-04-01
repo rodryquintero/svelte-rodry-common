@@ -1,7 +1,49 @@
 <script>
-  import { Modal, Treeview, Breadcrumbs } from "../src/index.js";
+  import { Modal, Treeview, Breadcrumbs, Tabulator } from "../src/index.js";
   import MultiSelect from "../src/MultiSelect/index.svelte";
   import SvelteTabs from "./SvelteTabs/index.svelte";
+
+  const columns = [
+    {
+      title: "TestID",
+      field: "testid",
+    },
+    {
+      title: "Test Name",
+      field: "test_name",
+    },
+    {
+      title: "Sample Type",
+      field: "sample_type",
+    },
+  ];
+
+  const data = [
+    { testid: 1001, test_name: "Glucose", sample_type: "Plasma" },
+    { testid: 1002, test_name: "Creatine", sample_type: "Serum" },
+    { testid: 1003, test_name: "HDL", sample_type: "Serum" },
+    { testid: 1004, test_name: "LDL", sample_type: "Serum" },
+    { testid: 1001, test_name: "Glucose", sample_type: "Plasma" },
+    { testid: 1002, test_name: "Creatine", sample_type: "Serum" },
+    { testid: 1003, test_name: "HDL", sample_type: "Serum" },
+    { testid: 1004, test_name: "LDL", sample_type: "Serum" },
+    { testid: 1001, test_name: "Glucose", sample_type: "Plasma" },
+    { testid: 1002, test_name: "Creatine", sample_type: "Serum" },
+    { testid: 1003, test_name: "HDL", sample_type: "Serum" },
+    { testid: 1004, test_name: "LDL", sample_type: "Serum" },
+    { testid: 1001, test_name: "Glucose", sample_type: "Plasma" },
+    { testid: 1002, test_name: "Creatine", sample_type: "Serum" },
+    { testid: 1003, test_name: "HDL", sample_type: "Serum" },
+    { testid: 1004, test_name: "LDL", sample_type: "Serum" },
+    { testid: 1001, test_name: "Glucose", sample_type: "Plasma" },
+    { testid: 1002, test_name: "Creatine", sample_type: "Serum" },
+    { testid: 1003, test_name: "HDL", sample_type: "Serum" },
+    { testid: 1004, test_name: "LDL", sample_type: "Serum" },
+    { testid: 1001, test_name: "Glucose", sample_type: "Plasma" },
+    { testid: 1002, test_name: "Creatine", sample_type: "Serum" },
+    { testid: 1003, test_name: "HDL", sample_type: "Serum" },
+    { testid: 1004, test_name: "LDL", sample_type: "Serum" },
+  ];
 
   const crumbs = [
     { label: "Main", url: "#/main" },
@@ -326,6 +368,14 @@
     <div class="rounded border border-gray-200 p-2 shadow">
       <h3>Breadcrumbs</h3>
       <Breadcrumbs items={crumbs} />
+    </div>
+  </section>
+
+  <!-- BREADCRUMBS -->
+  <section class="p-2">
+    <div class="rounded border border-gray-200 p-2 shadow">
+      <h3>Tabulator</h3>
+      <Tabulator {columns} {data} height="300" showHeader={false} />
     </div>
   </section>
 </main>
