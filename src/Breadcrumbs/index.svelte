@@ -1,10 +1,26 @@
 <script>
+  /**
+   * BREADCRUMBS
+   * =================================================================
+   * @input {array} items           array of breadcrumbs
+   * @input {string} style          style attribute
+   * @input {string} activeItem     id of breadcrumb to activate
+   * -----------------------------------------------------------------
+   * @example Items array
+   *
+   * [
+   *  {id:"one",label:"One", url:"#/one"},
+   *  {id:"two",label:"Two", url:"#/two"},
+   *  {id:"three",label:"Three", url:"#/three"},
+   * ]
+   */
   import { onMount, onDestroy } from "svelte";
   export let items = [];
   export let style = "";
+  export let activeItem = "";
 
   let currentUrl = window.location.hash;
-  
+
   const onHashChange = () => {
     currentUrl = window.location.hash;
   };
@@ -20,7 +36,9 @@
 
 <ul class="breadcrumb" {style}>
   {#each items as item}
-    <li class:active={item.url == currentUrl}>
+    <li
+      class:active={activeItem ? activeItem == item.id : item.url == currentUrl}
+    >
       <a href={item.url}>{item.label}</a>
     </li>
   {/each}

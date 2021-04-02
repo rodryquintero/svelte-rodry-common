@@ -2338,15 +2338,15 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
+    	child_ctx[5] = list[i];
     	return child_ctx;
     }
 
-    // (22:2) {#each items as item}
+    // (38:2) {#each items as item}
     function create_each_block$1(ctx) {
     	let li;
     	let a;
-    	let t0_value = /*item*/ ctx[4].label + "";
+    	let t0_value = /*item*/ ctx[5].label + "";
     	let t0;
     	let a_href_value;
     	let t1;
@@ -2357,11 +2357,15 @@ var app = (function () {
     			a = element("a");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(a, "href", a_href_value = /*item*/ ctx[4].url);
-    			add_location(a, file$7, 23, 6, 538);
+    			attr_dev(a, "href", a_href_value = /*item*/ ctx[5].url);
+    			add_location(a, file$7, 41, 6, 1157);
     			attr_dev(li, "class", "svelte-h7f8jb");
-    			toggle_class(li, "active", /*item*/ ctx[4].url == /*currentUrl*/ ctx[2]);
-    			add_location(li, file$7, 22, 4, 488);
+
+    			toggle_class(li, "active", /*activeItem*/ ctx[2]
+    			? /*activeItem*/ ctx[2] == /*item*/ ctx[5].id
+    			: /*item*/ ctx[5].url == /*currentUrl*/ ctx[3]);
+
+    			add_location(li, file$7, 38, 4, 1057);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -2370,14 +2374,16 @@ var app = (function () {
     			append_dev(li, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*items*/ 1 && t0_value !== (t0_value = /*item*/ ctx[4].label + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*items*/ 1 && t0_value !== (t0_value = /*item*/ ctx[5].label + "")) set_data_dev(t0, t0_value);
 
-    			if (dirty & /*items*/ 1 && a_href_value !== (a_href_value = /*item*/ ctx[4].url)) {
+    			if (dirty & /*items*/ 1 && a_href_value !== (a_href_value = /*item*/ ctx[5].url)) {
     				attr_dev(a, "href", a_href_value);
     			}
 
-    			if (dirty & /*items, currentUrl*/ 5) {
-    				toggle_class(li, "active", /*item*/ ctx[4].url == /*currentUrl*/ ctx[2]);
+    			if (dirty & /*activeItem, items, currentUrl*/ 13) {
+    				toggle_class(li, "active", /*activeItem*/ ctx[2]
+    				? /*activeItem*/ ctx[2] == /*item*/ ctx[5].id
+    				: /*item*/ ctx[5].url == /*currentUrl*/ ctx[3]);
     			}
     		},
     		d: function destroy(detaching) {
@@ -2389,7 +2395,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(22:2) {#each items as item}",
+    		source: "(38:2) {#each items as item}",
     		ctx
     	});
 
@@ -2416,7 +2422,7 @@ var app = (function () {
 
     			attr_dev(ul, "class", "breadcrumb svelte-h7f8jb");
     			attr_dev(ul, "style", /*style*/ ctx[1]);
-    			add_location(ul, file$7, 20, 0, 426);
+    			add_location(ul, file$7, 36, 0, 995);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2429,7 +2435,7 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*items, currentUrl*/ 5) {
+    			if (dirty & /*activeItem, items, currentUrl*/ 13) {
     				each_value = /*items*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -2481,10 +2487,11 @@ var app = (function () {
     	validate_slots("Breadcrumbs", slots, []);
     	let { items = [] } = $$props;
     	let { style = "" } = $$props;
+    	let { activeItem = "" } = $$props;
     	let currentUrl = window.location.hash;
 
     	const onHashChange = () => {
-    		$$invalidate(2, currentUrl = window.location.hash);
+    		$$invalidate(3, currentUrl = window.location.hash);
     	};
 
     	onMount(() => {
@@ -2495,7 +2502,7 @@ var app = (function () {
     		window.removeEventListener("hashchange", onHashChange);
     	});
 
-    	const writable_props = ["items", "style"];
+    	const writable_props = ["items", "style", "activeItem"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Breadcrumbs> was created with unknown prop '${key}'`);
@@ -2504,6 +2511,7 @@ var app = (function () {
     	$$self.$$set = $$props => {
     		if ("items" in $$props) $$invalidate(0, items = $$props.items);
     		if ("style" in $$props) $$invalidate(1, style = $$props.style);
+    		if ("activeItem" in $$props) $$invalidate(2, activeItem = $$props.activeItem);
     	};
 
     	$$self.$capture_state = () => ({
@@ -2511,6 +2519,7 @@ var app = (function () {
     		onDestroy,
     		items,
     		style,
+    		activeItem,
     		currentUrl,
     		onHashChange
     	});
@@ -2518,20 +2527,21 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("items" in $$props) $$invalidate(0, items = $$props.items);
     		if ("style" in $$props) $$invalidate(1, style = $$props.style);
-    		if ("currentUrl" in $$props) $$invalidate(2, currentUrl = $$props.currentUrl);
+    		if ("activeItem" in $$props) $$invalidate(2, activeItem = $$props.activeItem);
+    		if ("currentUrl" in $$props) $$invalidate(3, currentUrl = $$props.currentUrl);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [items, style, currentUrl];
+    	return [items, style, activeItem, currentUrl];
     }
 
     class Breadcrumbs extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { items: 0, style: 1 });
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { items: 0, style: 1, activeItem: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2554,6 +2564,14 @@ var app = (function () {
     	}
 
     	set style(value) {
+    		throw new Error("<Breadcrumbs>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get activeItem() {
+    		throw new Error("<Breadcrumbs>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set activeItem(value) {
     		throw new Error("<Breadcrumbs>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -33216,7 +33234,7 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			div0 = element("div");
-    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(/*cssClass*/ ctx[1]) + " svelte-x43i7a"));
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(/*cssClass*/ ctx[1]) + " svelte-1rqar45"));
     			add_location(div0, file$6, 384, 4, 10526);
     			attr_dev(div1, "id", "tabulator-id");
     			attr_dev(div1, "class", "tabulator-svelte-table");
@@ -33249,7 +33267,7 @@ var app = (function () {
     				if_block = null;
     			}
 
-    			if (dirty[0] & /*cssClass*/ 2 && div0_class_value !== (div0_class_value = "" + (null_to_empty(/*cssClass*/ ctx[1]) + " svelte-x43i7a"))) {
+    			if (dirty[0] & /*cssClass*/ 2 && div0_class_value !== (div0_class_value = "" + (null_to_empty(/*cssClass*/ ctx[1]) + " svelte-1rqar45"))) {
     				attr_dev(div0, "class", div0_class_value);
     			}
     		},
@@ -33285,7 +33303,7 @@ var app = (function () {
     			i = element("i");
     			attr_dev(i, "class", "fas fa-sync fa-spin fa-3x");
     			add_location(i, file$6, 268, 22, 7443);
-    			attr_dev(div, "class", "loader svelte-x43i7a");
+    			attr_dev(div, "class", "loader svelte-1rqar45");
     			add_location(div, file$6, 268, 2, 7423);
     		},
     		m: function mount(target, anchor) {
@@ -35547,11 +35565,11 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[9] = list[i];
+    	child_ctx[11] = list[i];
     	return child_ctx;
     }
 
-    // (314:8) <div slot="title">
+    // (322:8) <div slot="title">
     function create_title_slot(ctx) {
     	let div;
 
@@ -35561,7 +35579,7 @@ var app = (function () {
     			div.textContent = "Modal Title";
     			attr_dev(div, "slot", "title");
     			attr_dev(div, "class", "svelte-g1xzir");
-    			add_location(div, file, 313, 8, 7348);
+    			add_location(div, file, 321, 8, 7548);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -35575,14 +35593,14 @@ var app = (function () {
     		block,
     		id: create_title_slot.name,
     		type: "slot",
-    		source: "(314:8) <div slot=\\\"title\\\">",
+    		source: "(322:8) <div slot=\\\"title\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (315:8) <div slot="body">
+    // (323:8) <div slot="body">
     function create_body_slot(ctx) {
     	let div;
 
@@ -35592,7 +35610,7 @@ var app = (function () {
     			div.textContent = "Modal Body";
     			attr_dev(div, "slot", "body");
     			attr_dev(div, "class", "svelte-g1xzir");
-    			add_location(div, file, 314, 8, 7393);
+    			add_location(div, file, 322, 8, 7593);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -35606,14 +35624,14 @@ var app = (function () {
     		block,
     		id: create_body_slot.name,
     		type: "slot",
-    		source: "(315:8) <div slot=\\\"body\\\">",
+    		source: "(323:8) <div slot=\\\"body\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (316:8) <div slot="footer" class="grid justify-items-end">
+    // (324:8) <div slot="footer" class="grid justify-items-end">
     function create_footer_slot(ctx) {
     	let div;
     	let button;
@@ -35626,17 +35644,17 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Close";
     			attr_dev(button, "class", "svelte-g1xzir");
-    			add_location(button, file, 316, 10, 7498);
+    			add_location(button, file, 324, 10, 7698);
     			attr_dev(div, "slot", "footer");
     			attr_dev(div, "class", "grid justify-items-end svelte-g1xzir");
-    			add_location(div, file, 315, 8, 7436);
+    			add_location(div, file, 323, 8, 7636);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, button);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*toggleModal*/ ctx[7], false, false, false);
+    				dispose = listen_dev(button, "click", /*toggleModal*/ ctx[8], false, false, false);
     				mounted = true;
     			}
     		},
@@ -35652,14 +35670,14 @@ var app = (function () {
     		block,
     		id: create_footer_slot.name,
     		type: "slot",
-    		source: "(316:8) <div slot=\\\"footer\\\" class=\\\"grid justify-items-end\\\">",
+    		source: "(324:8) <div slot=\\\"footer\\\" class=\\\"grid justify-items-end\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (313:6) <Modal cssClass="w-8/12" show={showModal} onClose={toggleModal}>
+    // (321:6) <Modal cssClass="w-8/12" show={showModal} onClose={toggleModal}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -35684,17 +35702,17 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(313:6) <Modal cssClass=\\\"w-8/12\\\" show={showModal} onClose={toggleModal}>",
+    		source: "(321:6) <Modal cssClass=\\\"w-8/12\\\" show={showModal} onClose={toggleModal}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (339:12) {#each selectedCountries as country}
+    // (347:12) {#each selectedCountries as country}
     function create_each_block(ctx) {
     	let small;
-    	let t0_value = /*country*/ ctx[9] + "";
+    	let t0_value = /*country*/ ctx[11] + "";
     	let t0;
     	let t1;
 
@@ -35704,7 +35722,7 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = text(",");
     			attr_dev(small, "class", "svelte-g1xzir");
-    			add_location(small, file, 339, 14, 8237);
+    			add_location(small, file, 347, 14, 8437);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, small, anchor);
@@ -35712,7 +35730,7 @@ var app = (function () {
     			append_dev(small, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*selectedCountries*/ 2 && t0_value !== (t0_value = /*country*/ ctx[9] + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*selectedCountries*/ 4 && t0_value !== (t0_value = /*country*/ ctx[11] + "")) set_data_dev(t0, t0_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(small);
@@ -35723,7 +35741,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(339:12) {#each selectedCountries as country}",
+    		source: "(347:12) {#each selectedCountries as country}",
     		ctx
     	});
 
@@ -35751,7 +35769,7 @@ var app = (function () {
     	let h31;
     	let t14;
     	let div3;
-    	let label;
+    	let label0;
     	let t15;
     	let multiselect;
     	let t16;
@@ -35779,10 +35797,31 @@ var app = (function () {
     	let t27;
     	let breadcrumbs;
     	let t28;
-    	let section5;
+    	let hr;
+    	let t29;
     	let div9;
+    	let strong;
+    	let t31;
+    	let label1;
+    	let input0;
+    	let t32;
+    	let t33;
+    	let label2;
+    	let input1;
+    	let t34;
+    	let t35;
+    	let label3;
+    	let input2;
+    	let t36;
+    	let t37;
+    	let label4;
+    	let input3;
+    	let t38;
+    	let t39;
+    	let section5;
+    	let div10;
     	let h35;
-    	let t30;
+    	let t41;
     	let tabulator;
     	let current;
     	let mounted;
@@ -35792,8 +35831,8 @@ var app = (function () {
     	modal = new Modal({
     			props: {
     				cssClass: "w-8/12",
-    				show: /*showModal*/ ctx[0],
-    				onClose: /*toggleModal*/ ctx[7],
+    				show: /*showModal*/ ctx[1],
+    				onClose: /*toggleModal*/ ctx[8],
     				$$slots: {
     					default: [create_default_slot],
     					footer: [create_footer_slot],
@@ -35807,14 +35846,14 @@ var app = (function () {
 
     	multiselect = new MultiSelect({
     			props: {
-    				items: /*items*/ ctx[6],
-    				value: /*selectedCountries*/ ctx[1],
-    				onChange: /*func*/ ctx[8]
+    				items: /*items*/ ctx[7],
+    				value: /*selectedCountries*/ ctx[2],
+    				onChange: /*func*/ ctx[10]
     			},
     			$$inline: true
     		});
 
-    	let each_value = /*selectedCountries*/ ctx[1];
+    	let each_value = /*selectedCountries*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -35825,19 +35864,22 @@ var app = (function () {
     	sveltetabs = new SvelteTabs({ $$inline: true });
 
     	treeview = new Treeview({
-    			props: { items: /*treeviewItems*/ ctx[5] },
+    			props: { items: /*treeviewItems*/ ctx[6] },
     			$$inline: true
     		});
 
     	breadcrumbs = new Breadcrumbs({
-    			props: { items: /*crumbs*/ ctx[4] },
+    			props: {
+    				activeItem: /*activeCrumb*/ ctx[0],
+    				items: /*crumbs*/ ctx[5]
+    			},
     			$$inline: true
     		});
 
     	tabulator = new Tabulator_1({
     			props: {
-    				columns: /*columns*/ ctx[2],
-    				data: /*data*/ ctx[3],
+    				columns: /*columns*/ ctx[3],
+    				data: /*data*/ ctx[4],
     				height: "300",
     				showHeader: false
     			},
@@ -35870,7 +35912,7 @@ var app = (function () {
     			h31.textContent = "MultiSelect";
     			t14 = space();
     			div3 = element("div");
-    			label = element("label");
+    			label0 = element("label");
     			t15 = text("Country List\r\n          ");
     			create_component(multiselect.$$.fragment);
     			t16 = space();
@@ -35907,69 +35949,134 @@ var app = (function () {
     			t27 = space();
     			create_component(breadcrumbs.$$.fragment);
     			t28 = space();
-    			section5 = element("section");
+    			hr = element("hr");
+    			t29 = space();
     			div9 = element("div");
+    			strong = element("strong");
+    			strong.textContent = "Set active crumb:";
+    			t31 = space();
+    			label1 = element("label");
+    			input0 = element("input");
+    			t32 = text(" Main");
+    			t33 = space();
+    			label2 = element("label");
+    			input1 = element("input");
+    			t34 = text(" Queries");
+    			t35 = space();
+    			label3 = element("label");
+    			input2 = element("input");
+    			t36 = text(" Orders Search");
+    			t37 = space();
+    			label4 = element("label");
+    			input3 = element("input");
+    			t38 = text(" Clear");
+    			t39 = space();
+    			section5 = element("section");
+    			div10 = element("div");
     			h35 = element("h3");
     			h35.textContent = "Tabulator";
-    			t30 = space();
+    			t41 = space();
     			create_component(tabulator.$$.fragment);
     			attr_dev(h1, "class", "text-center svelte-g1xzir");
-    			add_location(h1, file, 303, 2, 7007);
+    			add_location(h1, file, 311, 2, 7207);
     			attr_dev(h2, "class", "svelte-g1xzir");
-    			add_location(h2, file, 304, 2, 7067);
+    			add_location(h2, file, 312, 2, 7267);
     			attr_dev(h30, "class", "svelte-g1xzir");
-    			add_location(h30, file, 308, 6, 7190);
+    			add_location(h30, file, 316, 6, 7390);
     			attr_dev(button, "class", "svelte-g1xzir");
-    			add_location(button, file, 310, 6, 7214);
+    			add_location(button, file, 318, 6, 7414);
     			attr_dev(div0, "class", "rounded border border-gray-200 p-2 shadow svelte-g1xzir");
-    			add_location(div0, file, 307, 4, 7127);
+    			add_location(div0, file, 315, 4, 7327);
     			attr_dev(section0, "class", "p-2 svelte-g1xzir");
-    			add_location(section0, file, 306, 2, 7100);
+    			add_location(section0, file, 314, 2, 7300);
     			attr_dev(h31, "class", "svelte-g1xzir");
-    			add_location(h31, file, 325, 6, 7721);
-    			attr_dev(label, "for", "country-list");
-    			attr_dev(label, "class", "svelte-g1xzir");
-    			add_location(label, file, 327, 8, 7793);
+    			add_location(h31, file, 333, 6, 7921);
+    			attr_dev(label0, "for", "country-list");
+    			attr_dev(label0, "class", "svelte-g1xzir");
+    			add_location(label0, file, 335, 8, 7993);
     			attr_dev(h5, "class", "px-2 svelte-g1xzir");
-    			add_location(h5, file, 336, 10, 8086);
+    			add_location(h5, file, 344, 10, 8286);
     			attr_dev(div1, "class", "px-2 h-20 overflow-auto svelte-g1xzir");
-    			add_location(div1, file, 337, 10, 8134);
+    			add_location(div1, file, 345, 10, 8334);
     			attr_dev(div2, "class", " rounded bg-gray-200 w-6/12  svelte-g1xzir");
-    			add_location(div2, file, 335, 8, 8032);
+    			add_location(div2, file, 343, 8, 8232);
     			attr_dev(div3, "class", "flex justify-between svelte-g1xzir");
-    			add_location(div3, file, 326, 6, 7749);
+    			add_location(div3, file, 334, 6, 7949);
     			attr_dev(div4, "class", "rounded border border-gray-200 p-2 shadow svelte-g1xzir");
-    			add_location(div4, file, 324, 4, 7658);
+    			add_location(div4, file, 332, 4, 7858);
     			attr_dev(section1, "class", "p-2 svelte-g1xzir");
-    			add_location(section1, file, 323, 2, 7631);
+    			add_location(section1, file, 331, 2, 7831);
     			attr_dev(h32, "class", "svelte-g1xzir");
-    			add_location(h32, file, 350, 6, 8477);
+    			add_location(h32, file, 358, 6, 8677);
     			attr_dev(div5, "class", "rounded border border-gray-200 p-2 shadow svelte-g1xzir");
-    			add_location(div5, file, 349, 4, 8414);
+    			add_location(div5, file, 357, 4, 8614);
     			attr_dev(section2, "class", "p-2 svelte-g1xzir");
-    			add_location(section2, file, 348, 2, 8387);
+    			add_location(section2, file, 356, 2, 8587);
     			attr_dev(h33, "class", "svelte-g1xzir");
-    			add_location(h33, file, 358, 6, 8662);
+    			add_location(h33, file, 366, 6, 8862);
     			attr_dev(div6, "class", "w-3/12 bg-gray-200 p-2 svelte-g1xzir");
-    			add_location(div6, file, 359, 6, 8687);
+    			add_location(div6, file, 367, 6, 8887);
     			attr_dev(div7, "class", "rounded border border-gray-200 p-2 shadow svelte-g1xzir");
-    			add_location(div7, file, 357, 4, 8599);
+    			add_location(div7, file, 365, 4, 8799);
     			attr_dev(section3, "class", "p-2 svelte-g1xzir");
-    			add_location(section3, file, 356, 2, 8572);
+    			add_location(section3, file, 364, 2, 8772);
     			attr_dev(h34, "class", "svelte-g1xzir");
-    			add_location(h34, file, 368, 6, 8927);
+    			add_location(h34, file, 376, 6, 9127);
     			attr_dev(div8, "class", "rounded border border-gray-200 p-2 shadow svelte-g1xzir");
-    			add_location(div8, file, 367, 4, 8864);
+    			add_location(div8, file, 375, 4, 9064);
+    			attr_dev(hr, "class", "svelte-g1xzir");
+    			add_location(hr, file, 379, 4, 9228);
+    			attr_dev(strong, "class", "svelte-g1xzir");
+    			add_location(strong, file, 381, 6, 9276);
+    			attr_dev(input0, "id", "crumb-main");
+    			attr_dev(input0, "type", "radio");
+    			attr_dev(input0, "name", "activeCrumb");
+    			input0.value = "main";
+    			attr_dev(input0, "class", "svelte-g1xzir");
+    			add_location(input0, file, 383, 8, 9352);
+    			attr_dev(label1, "for", "crumb-main");
+    			attr_dev(label1, "class", "svelte-g1xzir");
+    			add_location(label1, file, 382, 6, 9318);
+    			attr_dev(input1, "id", "crumb-queries");
+    			attr_dev(input1, "type", "radio");
+    			attr_dev(input1, "name", "activeCrumb");
+    			input1.value = "queries";
+    			attr_dev(input1, "class", "svelte-g1xzir");
+    			add_location(input1, file, 392, 8, 9579);
+    			attr_dev(label2, "for", "crumb-queries");
+    			attr_dev(label2, "class", "svelte-g1xzir");
+    			add_location(label2, file, 391, 6, 9542);
+    			attr_dev(input2, "id", "crumb-order-search");
+    			attr_dev(input2, "type", "radio");
+    			attr_dev(input2, "name", "activeCrumb");
+    			input2.value = "order-search";
+    			attr_dev(input2, "class", "svelte-g1xzir");
+    			add_location(input2, file, 401, 8, 9820);
+    			attr_dev(label3, "for", "crumb-order-search");
+    			attr_dev(label3, "class", "svelte-g1xzir");
+    			add_location(label3, file, 400, 6, 9778);
+    			attr_dev(input3, "id", "crumb-clear");
+    			attr_dev(input3, "type", "radio");
+    			attr_dev(input3, "name", "activeCrumb");
+    			input3.value = "";
+    			attr_dev(input3, "class", "svelte-g1xzir");
+    			add_location(input3, file, 410, 8, 10088);
+    			attr_dev(label4, "for", "crumb-clear");
+    			set_style(label4, "color", "red");
+    			attr_dev(label4, "class", "svelte-g1xzir");
+    			add_location(label4, file, 409, 6, 10035);
+    			attr_dev(div9, "class", "flex space-x-4 svelte-g1xzir");
+    			add_location(div9, file, 380, 4, 9240);
     			attr_dev(section4, "class", "p-2 svelte-g1xzir");
-    			add_location(section4, file, 366, 2, 8837);
+    			add_location(section4, file, 374, 2, 9037);
     			attr_dev(h35, "class", "svelte-g1xzir");
-    			add_location(h35, file, 376, 6, 9131);
-    			attr_dev(div9, "class", "rounded border border-gray-200 p-2 shadow svelte-g1xzir");
-    			add_location(div9, file, 375, 4, 9068);
+    			add_location(h35, file, 424, 6, 10414);
+    			attr_dev(div10, "class", "rounded border border-gray-200 p-2 shadow svelte-g1xzir");
+    			add_location(div10, file, 423, 4, 10351);
     			attr_dev(section5, "class", "p-2 svelte-g1xzir");
-    			add_location(section5, file, 374, 2, 9041);
+    			add_location(section5, file, 422, 2, 10324);
     			attr_dev(main, "class", "w-full svelte-g1xzir");
-    			add_location(main, file, 302, 0, 6982);
+    			add_location(main, file, 310, 0, 7182);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -35994,9 +36101,9 @@ var app = (function () {
     			append_dev(div4, h31);
     			append_dev(div4, t14);
     			append_dev(div4, div3);
-    			append_dev(div3, label);
-    			append_dev(label, t15);
-    			mount_component(multiselect, label, null);
+    			append_dev(div3, label0);
+    			append_dev(label0, t15);
+    			mount_component(multiselect, label0, null);
     			append_dev(div3, t16);
     			append_dev(div3, div2);
     			append_dev(div2, h5);
@@ -36026,16 +36133,44 @@ var app = (function () {
     			append_dev(div8, h34);
     			append_dev(div8, t27);
     			mount_component(breadcrumbs, div8, null);
-    			append_dev(main, t28);
+    			append_dev(section4, t28);
+    			append_dev(section4, hr);
+    			append_dev(section4, t29);
+    			append_dev(section4, div9);
+    			append_dev(div9, strong);
+    			append_dev(div9, t31);
+    			append_dev(div9, label1);
+    			append_dev(label1, input0);
+    			append_dev(label1, t32);
+    			append_dev(div9, t33);
+    			append_dev(div9, label2);
+    			append_dev(label2, input1);
+    			append_dev(label2, t34);
+    			append_dev(div9, t35);
+    			append_dev(div9, label3);
+    			append_dev(label3, input2);
+    			append_dev(label3, t36);
+    			append_dev(div9, t37);
+    			append_dev(div9, label4);
+    			append_dev(label4, input3);
+    			append_dev(label4, t38);
+    			append_dev(main, t39);
     			append_dev(main, section5);
-    			append_dev(section5, div9);
-    			append_dev(div9, h35);
-    			append_dev(div9, t30);
-    			mount_component(tabulator, div9, null);
+    			append_dev(section5, div10);
+    			append_dev(div10, h35);
+    			append_dev(div10, t41);
+    			mount_component(tabulator, div10, null);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*toggleModal*/ ctx[7], false, false, false);
+    				dispose = [
+    					listen_dev(button, "click", /*toggleModal*/ ctx[8], false, false, false),
+    					listen_dev(input0, "change", /*setActiveCrumb*/ ctx[9], false, false, false),
+    					listen_dev(input1, "change", /*setActiveCrumb*/ ctx[9], false, false, false),
+    					listen_dev(input2, "change", /*setActiveCrumb*/ ctx[9], false, false, false),
+    					listen_dev(input3, "change", /*setActiveCrumb*/ ctx[9], false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
@@ -36045,20 +36180,20 @@ var app = (function () {
     			}
 
     			const modal_changes = {};
-    			if (dirty & /*showModal*/ 1) modal_changes.show = /*showModal*/ ctx[0];
+    			if (dirty & /*showModal*/ 2) modal_changes.show = /*showModal*/ ctx[1];
 
-    			if (dirty & /*$$scope*/ 4096) {
+    			if (dirty & /*$$scope*/ 16384) {
     				modal_changes.$$scope = { dirty, ctx };
     			}
 
     			modal.$set(modal_changes);
     			const multiselect_changes = {};
-    			if (dirty & /*selectedCountries*/ 2) multiselect_changes.value = /*selectedCountries*/ ctx[1];
-    			if (dirty & /*selectedCountries*/ 2) multiselect_changes.onChange = /*func*/ ctx[8];
+    			if (dirty & /*selectedCountries*/ 4) multiselect_changes.value = /*selectedCountries*/ ctx[2];
+    			if (dirty & /*selectedCountries*/ 4) multiselect_changes.onChange = /*func*/ ctx[10];
     			multiselect.$set(multiselect_changes);
 
-    			if (dirty & /*selectedCountries*/ 2) {
-    				each_value = /*selectedCountries*/ ctx[1];
+    			if (dirty & /*selectedCountries*/ 4) {
+    				each_value = /*selectedCountries*/ ctx[2];
     				validate_each_argument(each_value);
     				let i;
 
@@ -36080,6 +36215,10 @@ var app = (function () {
 
     				each_blocks.length = each_value.length;
     			}
+
+    			const breadcrumbs_changes = {};
+    			if (dirty & /*activeCrumb*/ 1) breadcrumbs_changes.activeItem = /*activeCrumb*/ ctx[0];
+    			breadcrumbs.$set(breadcrumbs_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -36111,7 +36250,7 @@ var app = (function () {
     			destroy_component(breadcrumbs);
     			destroy_component(tabulator);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -36129,10 +36268,15 @@ var app = (function () {
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("App", slots, []);
+    	let activeCrumb = "main";
 
     	const columns = [
     		{ title: "TestID", field: "testid" },
-    		{ title: "Test Name", field: "test_name" },
+    		{
+    			title: "Test Name",
+    			field: "test_name",
+    			headerFilter: "input"
+    		},
     		{
     			title: "Sample Type",
     			field: "sample_type"
@@ -36263,9 +36407,14 @@ var app = (function () {
     	];
 
     	const crumbs = [
-    		{ label: "Main", url: "#/main" },
-    		{ label: "Queries", url: "#/main/queries" },
+    		{ id: "main", label: "Main", url: "#/main" },
     		{
+    			id: "queries",
+    			label: "Queries",
+    			url: "#/main/queries"
+    		},
+    		{
+    			id: "order-search",
     			label: "Order Search",
     			url: "#/main/queries/order-search"
     		}
@@ -36530,14 +36679,15 @@ var app = (function () {
     	];
 
     	let selectedCountries = [];
-    	const toggleModal = () => $$invalidate(0, showModal = !showModal);
+    	const toggleModal = () => $$invalidate(1, showModal = !showModal);
+    	const setActiveCrumb = e => $$invalidate(0, activeCrumb = e.target.value);
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	const func = value => $$invalidate(1, selectedCountries = value);
+    	const func = value => $$invalidate(2, selectedCountries = value);
 
     	$$self.$capture_state = () => ({
     		Modal,
@@ -36546,6 +36696,7 @@ var app = (function () {
     		Tabulator: Tabulator_1,
     		MultiSelect,
     		SvelteTabs,
+    		activeCrumb,
     		columns,
     		data,
     		crumbs,
@@ -36554,12 +36705,14 @@ var app = (function () {
     		showModal,
     		items,
     		selectedCountries,
-    		toggleModal
+    		toggleModal,
+    		setActiveCrumb
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("showModal" in $$props) $$invalidate(0, showModal = $$props.showModal);
-    		if ("selectedCountries" in $$props) $$invalidate(1, selectedCountries = $$props.selectedCountries);
+    		if ("activeCrumb" in $$props) $$invalidate(0, activeCrumb = $$props.activeCrumb);
+    		if ("showModal" in $$props) $$invalidate(1, showModal = $$props.showModal);
+    		if ("selectedCountries" in $$props) $$invalidate(2, selectedCountries = $$props.selectedCountries);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -36567,6 +36720,7 @@ var app = (function () {
     	}
 
     	return [
+    		activeCrumb,
     		showModal,
     		selectedCountries,
     		columns,
@@ -36575,6 +36729,7 @@ var app = (function () {
     		treeviewItems,
     		items,
     		toggleModal,
+    		setActiveCrumb,
     		func
     	];
     }

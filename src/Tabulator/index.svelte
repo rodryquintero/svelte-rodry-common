@@ -398,8 +398,10 @@
     font-size: 0.8rem;
   }
 
-  :global(.tabulator-col, .tabulator-header) {
+  :global(.tabulator-col) {
     background-color: #8D8D8D !important;
+  }
+    :global(.tabulator-col-title-holder) {
     color: white;
   }
 </style>

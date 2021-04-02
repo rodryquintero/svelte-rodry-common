@@ -3,6 +3,7 @@
   import MultiSelect from "../src/MultiSelect/index.svelte";
   import SvelteTabs from "./SvelteTabs/index.svelte";
 
+  let activeCrumb = "main";
   const columns = [
     {
       title: "TestID",
@@ -11,6 +12,7 @@
     {
       title: "Test Name",
       field: "test_name",
+      headerFilter: "input",
     },
     {
       title: "Sample Type",
@@ -46,9 +48,13 @@
   ];
 
   const crumbs = [
-    { label: "Main", url: "#/main" },
-    { label: "Queries", url: "#/main/queries" },
-    { label: "Order Search", url: "#/main/queries/order-search" },
+    { id: "main", label: "Main", url: "#/main" },
+    { id: "queries", label: "Queries", url: "#/main/queries" },
+    {
+      id: "order-search",
+      label: "Order Search",
+      url: "#/main/queries/order-search",
+    },
   ];
 
   const treeviewItems = [
@@ -295,6 +301,8 @@
   let selectedCountries = [];
 
   const toggleModal = () => (showModal = !showModal);
+
+  const setActiveCrumb = (e) => (activeCrumb = e.target.value);
 </script>
 
 <svelte:head>
@@ -367,7 +375,47 @@
   <section class="p-2">
     <div class="rounded border border-gray-200 p-2 shadow">
       <h3>Breadcrumbs</h3>
-      <Breadcrumbs items={crumbs} />
+      <Breadcrumbs activeItem={activeCrumb} items={crumbs} />
+    </div>
+    <hr />
+    <div class="flex space-x-4">
+      <strong>Set active crumb:</strong>
+      <label for="crumb-main">
+        <input
+          id="crumb-main"
+          type="radio"
+          name="activeCrumb"
+          value="main"
+          on:change={setActiveCrumb}
+        /> Main</label
+      >
+      <label for="crumb-queries">
+        <input
+          id="crumb-queries"
+          on:change={setActiveCrumb}
+          type="radio"
+          name="activeCrumb"
+          value="queries"
+        /> Queries</label
+      >
+      <label for="crumb-order-search">
+        <input
+          id="crumb-order-search"
+          type="radio"
+          name="activeCrumb"
+          value="order-search"
+          on:change={setActiveCrumb}
+        /> Orders Search</label
+      >
+      <label for="crumb-clear" style="color:red">
+        <input
+          id="crumb-clear"
+          type="radio"
+          name="activeCrumb"
+          value=""
+          on:change={setActiveCrumb}
+        /> Clear</label
+      >
     </div>
   </section>
 
