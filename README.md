@@ -66,16 +66,108 @@ Simple Modal script
 
 Recompiled version of `svelte-tabs` with the latest version of Svelte. This fixes an error related to the older Svelte version used by the package.
 
-_Coming soon..._
+```javascript
+import { Tabs, Tab, TabList, TabPanel } from "svelte-rodry-common";
 
+
+<Tabs>
+  <TabList>
+    <Tab>One</Tab>
+    <Tab>Two</Tab>
+    <Tab>Three</Tab>
+  </TabList>
+
+  <TabPanel>
+    <div class="p-2">
+      <h2>Panel One</h2>
+    </div>
+  </TabPanel>
+
+  <TabPanel>
+    <div class="p-2">
+      <h2>Panel Two</h2>
+    </div>
+  </TabPanel>
+
+  <TabPanel>
+    <div class="p-2">
+      <h2>Panel Three</h2>
+    </div>
+  </TabPanel>
+</Tabs>
+```
 ### Tabulator
 
 Sveltified version of `tabulator-tables`.
 
-_Coming soon..._
+**Example**
+
+```javascript
+import { Tabulator } from "svelte-rodry-common";
+
+const columns = [
+  {
+    title: "TestID",
+    field: "testid",
+  },
+  {
+    title: "Test Name",
+    field: "test_name",
+    headerFilter: "input",
+  },
+  {
+    title: "Sample Type",
+    field: "sample_type",
+  },
+];
+
+const data = [
+  { testid: 1001, test_name: "Glucose", sample_type: "Plasma" },
+  { testid: 1002, test_name: "Creatine", sample_type: "Serum" },
+  { testid: 1003, test_name: "HDL", sample_type: "Serum" },
+  { testid: 1004, test_name: "LDL", sample_type: "Serum" },
+  { testid: 1001, test_name: "Glucose", sample_type: "Plasma" },
+  { testid: 1002, test_name: "Creatine", sample_type: "Serum" },
+];
+
+<Tabulator {columns} {data} height="300" showHeader={false} />
+```
 
 ### Treeview
 
 Based on the Treeview examples shown in several REPLs. It uses _Fontawesome_ icons
 
-_Coming soon..._
+```javascript
+import { Treeview } from "svelte-rodry-common";
+
+const treeviewItems = [
+  {
+    title: "Main",
+    url: "#/main",
+    children: [
+      { title: "Order Entry", url: "#/order-entry" },
+      {
+        title: "Queries",
+        url: "#/main/queries",
+        children: [
+          { title: "Order Search", url: "#/main/queries/order-search" },
+          { title: "Patient Search", url: "#/main/queries/patient-search" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Administration",
+    url: "#/administration",
+    children: [
+      { title: "Test", url: "#/administration/tests" },
+      { title: "Users", url: "#/administration/users" },
+      { title: "QC", url: "#/administration/qc" },
+      { title: "ICA", url: "#/administration/ica" },
+    ],
+  },
+  { title: "Monitoring", url: "#/monitoring" },
+];
+
+<Treeview items={treeviewItems} />;
+```

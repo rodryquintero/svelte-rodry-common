@@ -419,7 +419,7 @@
     </div>
   </section>
 
-  <!-- BREADCRUMBS -->
+  <!-- TABULATOR -->
   <section class="p-2">
     <div class="rounded border border-gray-200 p-2 shadow">
       <h3>Tabulator</h3>
