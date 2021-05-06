@@ -1,0 +1,16 @@
+#############
+POST http://192.168.190.153/csp/acb/IftyAddonAgenda/order/18000184 HTTP/1.1
+Authorization: Basic _system:INFINITY
+
+{
+    "paramFields": ["SampleID","RegisterDate","AppointmentDate","rPatients->FirstName","rPatients->LastName","PatientID"],
+    "showTests":true
+}
+
+#########
+GET http://192.168.190.153/csp/acb/IftyAddonAgenda/orders/regdate-range/2019-01-01/2019-01-11 HTTP/1.1
+Authorization: Basic _system:INFINITY
+
+#########
+GET http://192.168.190.153/csp/acb/IftyAddonAgenda/orders/appdate/2019-01-11 HTTP/1.1
+Authorization: Basic _system:INFINITY
