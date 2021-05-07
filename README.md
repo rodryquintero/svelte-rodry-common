@@ -19,7 +19,7 @@ Make sure your project has these installed.
 
 Very simple modal window using Tailwind css classes.
 
-### Properties
+#### Properties
 
 | Property | Type       | Description                                                                                                           |
 | -------- | ---------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -69,7 +69,6 @@ Recompiled version of `svelte-tabs` with the latest version of Svelte. This fixe
 ```javascript
 import { Tabs, Tab, TabList, TabPanel } from "svelte-rodry-common";
 
-
 <Tabs>
   <TabList>
     <Tab>One</Tab>
@@ -94,11 +93,29 @@ import { Tabs, Tab, TabList, TabPanel } from "svelte-rodry-common";
       <h2>Panel Three</h2>
     </div>
   </TabPanel>
-</Tabs>
+</Tabs>;
 ```
+
 ### Tabulator
 
 Sveltified version of `tabulator-tables`.
+
+#### Properties
+
+| Property       | Type       | Description                                      |
+| -------------- | ---------- | ------------------------------------------------ |
+| columns        | _array_    | Array with table columns definition.             |
+| data           | _array_    | Array with table data                            |
+| height         | _integer_  | Height of the table                              |
+| layout         | _integer_  | Height of the table                              |
+| rowClick       | _function_ | Function that runs when clicking on a row        |
+| rowDblClick    | _function_ | Function that runs when double-clicking on a row |
+| loading        | _boolean_  | Flag that shows or hides the "loading" icon      |
+| rowFormatter   | _function_ | Callback that formats each row                   |
+| cssClass       | _string_   | Custom CSS class                                 |
+| index          | _function_ | Field that serves as the index value of each row |
+| exportFileName | _string_   | Name of the file with exported data              |
+| showHeader     | _boolean_  | Shows or hides the Header                        |
 
 **Example**
 
